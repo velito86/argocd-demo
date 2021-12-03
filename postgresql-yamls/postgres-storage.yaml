@@ -1,0 +1,59 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: haste-volume
+  labels:
+    type: local
+    app: mypgsql
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/storage/pgsql_data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: haste-pv-claim
+  labels:
+    app: mypgsql
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: haste-postgres-volume
+  labels:
+    type: local
+    app: mypgsql
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadOnlyMany
+  hostPath:
+    path: "/mnt/storage/k8s/pgsql/"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: haste-postgres-pv-claim
+  labels:
+    app: mypgsql
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Mi

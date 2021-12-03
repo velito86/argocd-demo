@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mypgsql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mypgsql
+  template:
+    metadata:
+      labels:
+        app: mypgsql
+    spec:
+      containers:
+        - name: mypgsql
+          image: postgres:10
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-config
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: hastedb
+            - mountPath: /docker-entrypoint-initdb.d
+              name: hastedb-init-scripts
+      volumes:
+        - name: hastedb
+          persistentVolumeClaim:
+            claimName: haste-pv-claim
+        - name: hastedb-init-scripts
+          persistentVolumeClaim:
+            claimName: haste-postgres-pv-claim
+            
