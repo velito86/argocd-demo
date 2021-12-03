@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: haste-server
-        image: ghcr.io/velito86/haste-server/haste-server:v1
+        image: ghcr.io/velito86/haste-server/haste-server:v2
         ports:
         - containerPort: 7777
