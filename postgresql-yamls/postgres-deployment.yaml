@@ -24,13 +24,13 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: hastedb
-            - mountPath: /docker-entrypoint-initdb.d
-              name: hastedb-init-scripts
+#            - mountPath: /docker-entrypoint-initdb.d
+#              name: hastedb-init-scripts
       volumes:
         - name: hastedb
           persistentVolumeClaim:
             claimName: haste-pv-claim
-        - name: hastedb-init-scripts
-          persistentVolumeClaim:
-            claimName: haste-postgres-pv-claim
+#        - name: hastedb-init-scripts
+#          persistentVolumeClaim:
+#            claimName: haste-postgres-pv-claim
             
