@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: mypgsql
-          image: postgres:10
+          image: ghcr.io/velito86/postgresql:v1
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
@@ -32,5 +32,5 @@ spec:
             claimName: haste-pv-claim
 #        - name: hastedb-init-scripts
 #          persistentVolumeClaim:
-#            claimName: haste-postgres-pv-claim
+#           claimName: haste-postgres-pv-claim
             
