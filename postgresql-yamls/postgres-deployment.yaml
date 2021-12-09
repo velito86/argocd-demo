@@ -21,6 +21,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: postgres-config
+          env:
+          - name: POSTGRES_USER
+            value:
+          - name: POSTGRES_PASSWORD
+            value: 
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: hastedb
