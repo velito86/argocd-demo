@@ -18,14 +18,20 @@ spec:
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
-          envFrom:
-            - configMapRef:
-                name: postgres-config
+          env:
+          - name: POSTGRES_DB
+            value: hastedb
           env:
           - name: POSTGRES_USER
-            value:
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: username
           - name: POSTGRES_PASSWORD
-            value: 
+            valueFrom:
+              secretKeyRef:
+                name: postgres-secret
+                key: password 
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: hastedb
