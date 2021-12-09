@@ -7,6 +7,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-   - port: 7777
+    - protocol: TCP
+      port: 7777
+      targetPort: 7777
+      nodePort: 30367
   selector:
    app: haste-server
