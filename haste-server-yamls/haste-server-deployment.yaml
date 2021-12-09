@@ -16,6 +16,20 @@ spec:
     spec:
       containers:
       - name: haste-server
-        image: ghcr.io/velito86/haste-server/haste-server:v2
+        image: ghcr.io/velito86/haste-server/haste-server:v3
         ports:
         - containerPort: 7777
+        envFrom:
+          - configMapRef:
+            name: haste-server-config
+        env:
+        - name: STORAGE_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: username
+        -name: STORAGE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
