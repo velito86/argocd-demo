@@ -21,7 +21,7 @@ spec:
         - containerPort: 7777
         envFrom:
           - configMapRef:
-            name: haste-server-config
+              name: haste-server-config
         env:
         - name: STORAGE_USERNAME
           valueFrom:
