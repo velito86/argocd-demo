@@ -5,7 +5,7 @@ metadata:
   labels:
     app: haste-server
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - protocol: TCP
       port: 7777
