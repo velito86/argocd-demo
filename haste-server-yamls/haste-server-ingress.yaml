@@ -8,7 +8,7 @@ metadata:
     #nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   rules: 
-  - host: haste.com
+  - host: haste-server.com
     http:
       paths:
       - path: / 
